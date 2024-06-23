@@ -6,40 +6,24 @@ import java.util.Scanner;
 
 public class App 
 {
-    public static void main( String[] args )
-    {
-        System.out.print("Print Your Word: ");
+    public static void main( String[] args ){
+
+        // Prompt user for input
         Scanner scan1 = new Scanner(System.in);
+
+        System.out.print("Enter a word: ");
         String word = scan1.next().toLowerCase();
-        System.out.print("Print Your Sentence: ");
+
         Scanner scan2 = new Scanner(System.in);
+        System.out.print("Enter a sentence: ");
         String sentence = scan2.nextLine().toLowerCase();
 
 
+        // Create an instance of AnagramChecker
+        AnagramChecker checker = new AnagramChecker();
 
-        String[] words = sentence.split(" ");
-        int count = 0;
-
-
-        for (String candidate : words) {
-            if (candidate.length() == word.length()) {
-                char[] sortedWord = word.toCharArray();
-                char[] sortedCandidate = candidate.toCharArray();
-                Arrays.sort(sortedWord);
-                Arrays.sort(sortedCandidate);
-
-                if (Arrays.equals(sortedWord, sortedCandidate)) {
-                    System.out.println(String.format("%s and %s are anagrams", word, candidate));
-                    count++;
-                }
-            }
-        }
-
-        if (count !=0){
-            System.out.println(String.format("%d anagram(s) found", count));
-        }
-        System.out.println("No anagrams found.");
-
-
+        // Call the findAndPrintAnagrams method
+        checker.findAndPrintAnagrams(word, sentence);
     }
+
 }
